@@ -16,6 +16,7 @@ const Users = (props) => {
 
 Users.propTypes = {
   users: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Users;

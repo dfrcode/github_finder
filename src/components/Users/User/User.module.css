@@ -28,13 +28,13 @@
 }
 
 .user a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 40px;
-    color: #fff;
-    text-decoration: none;
-    margin-top: 20px;
-    background-color: #272727;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  background-color: #272727;
 }

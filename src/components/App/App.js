@@ -20,13 +20,25 @@ class App extends Component {
       icon: <BiGitBranch style={{ fontSize: "26px" }} />,
       date: new Date(),
     };
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   async componentDidMount() {
     this.setState({ loading: true });
-    const res = await axios.get("https://api.github.com/users");
+    const res = await axios.get(
+      `https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_SECRET_ID}`
+    );
 
     this.setState({ users: res.data, loading: false });
+  }
+
+  async handleSearch(value) {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${value}&client_id=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_SECRET_ID}`
+    );
+    this.setState({ users: res.data.items, loading: false });
   }
 
   render() {
@@ -34,9 +46,12 @@ class App extends Component {
       <div className={styles.wrapper}>
         <Header icon={this.state.icon} title={this.state.title} />
         <div className={styles.container}>
-          <Search />
+          <Search
+            handleText={this.handleText}
+            handleSearch={this.handleSearch}
+          />
           <div className={styles.container_users}>
-            <Users users={this.state.users} />
+            <Users users={this.state.users} loading={this.state.loading} />
           </div>
         </div>
         <Footer date={this.state.date} />

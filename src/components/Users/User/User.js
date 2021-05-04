@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./User.module.css";
 
-const User = (props) => {
-  const { login, avatar_url, html_url } = props.user;
-
+const User = ({ user: { login, avatar_url, html_url } }) => {
   return (
     <div className={styles.user}>
       <img src={avatar_url} alt={login} />
@@ -17,6 +15,7 @@ const User = (props) => {
 };
 
 User.propTypes = {
+  user: PropTypes.object.isRequired,
   login: PropTypes.string,
   avatar_url: PropTypes.string,
   html_url: PropTypes.string,
