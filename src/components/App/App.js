@@ -5,6 +5,7 @@ import styles from "./App.module.css";
 import { BiGitBranch } from "react-icons/bi";
 
 import Header from "../../layout/Header/Header";
+import Users from "../Users/Users";
 import Footer from "../../layout/Footer/Footer";
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
 
     this.state = {
       users: [],
+      loading: false,
       title: "GitHub Finder",
       icon: <BiGitBranch style={{ fontSize: "26px" }} />,
       date: new Date(),
@@ -20,16 +22,19 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    this.setState({ loading: true });
     const res = await axios.get("https://api.github.com/users");
 
-    console.log(res.data);
+    this.setState({ users: res.data, loading: false });
   }
 
   render() {
     return (
       <div className={styles.wrapper}>
         <Header icon={this.state.icon} title={this.state.title} />
-        <div className={styles.container}></div>
+        <div className={styles.container}>
+          <Users users={this.state.users} />
+        </div>
         <Footer date={this.state.date} />
       </div>
     );

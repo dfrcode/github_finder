@@ -1,0 +1,40 @@
+.user {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+  height: 250px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 2px 17px #ddd;
+  transition: box-shadow 0.2s linear, background-color 0.2s linear,
+    transform 0.2s linear;
+}
+
+.user:hover {
+  background-color: rgb(225, 236, 250);
+  box-shadow: none;
+  transform: rotate(1deg);
+}
+
+.user img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 20px;
+    background-color: #272727;
+}
