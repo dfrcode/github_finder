@@ -19,7 +19,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 100%;
   height: calc(100% - 80px);
+  padding-top: 80px;
+}
+
+.container_users {
+  width: 100%;
+  height: calc(100% - 50px);
 }

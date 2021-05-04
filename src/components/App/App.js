@@ -5,6 +5,7 @@ import styles from "./App.module.css";
 import { BiGitBranch } from "react-icons/bi";
 
 import Header from "../../layout/Header/Header";
+import Search from "../Search/Search";
 import Users from "../Users/Users";
 import Footer from "../../layout/Footer/Footer";
 
@@ -33,7 +34,10 @@ class App extends Component {
       <div className={styles.wrapper}>
         <Header icon={this.state.icon} title={this.state.title} />
         <div className={styles.container}>
-          <Users users={this.state.users} />
+          <Search />
+          <div className={styles.container_users}>
+            <Users users={this.state.users} />
+          </div>
         </div>
         <Footer date={this.state.date} />
       </div>
