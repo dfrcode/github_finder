@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import styles from "./UserItem.module.css";
 
+import { FaRegBuilding } from "react-icons/fa";
+import { FiMapPin, FiUsers, FiMail, FiLink, FiTwitter } from "react-icons/fi";
+import { GoRepo } from "react-icons/go";
+
 class UserItem extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
@@ -9,63 +13,83 @@ class UserItem extends Component {
   render() {
     const {
       name,
+      email,
       bio,
+      company,
+      location,
+      blog,
       avatar_url,
       login,
       followers,
       following,
       public_repos,
+      twitter_username,
     } = this.props.user;
 
     return (
       <div className={styles.container}>
         <div className={styles.user_info}>
           <img className={styles.user_image} src={avatar_url} alt={login} />
-          <div
+          <p style={{ fontSize: "20px", fontWeight: "bold" }}>{name}</p>
+          <p style={{ fontSize: "16px", color: "#272727" }}>{login}</p>
+          {bio !== null && (
+            <p style={{ fontSize: "12px", padding: "5px 0" }}>{bio}</p>
+          )}
+          <p
             style={{
-              width: "200px",
-              borderTop: "1px solid #eee",
-              borderBottom: "1px solid #eee",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "12px",
               padding: "10px 0",
             }}
           >
-            <p>
-              <span>Name:</span> {name}
+            <FiUsers style={{ marginRight: "3px" }} />{" "}
+            {Number.parseInt(followers) > 1000
+              ? `${(Number.parseInt(followers) / 1000).toFixed(1)}k`
+              : followers}{" "}
+            followers &bull;{" "}
+            {Number.parseInt(following) > 1000
+              ? `${(Number.parseInt(following) / 1000).toFixed(1)}k`
+              : following}{" "}
+            following &bull; <GoRepo style={{ marginLeft: "3px" }} />{" "}
+            {public_repos}
+          </p>
+          {company !== null && (
+            <p style={{ fontSize: "12px", padding: "5px 0" }}>
+              <FaRegBuilding /> {company}
             </p>
-            <p>
-              <span>Username:</span> {login}
+          )}
+          {location !== null && (
+            <p style={{ fontSize: "12px", padding: "5px 0" }}>
+              <FiMapPin /> {location}
             </p>
-          </div>
-          <div
-            style={{
-              width: "200px",
-              borderBottom: "1px solid #eee",
-              padding: "10px 0",
-            }}
-          >
-            {bio !== null && (
-              <p>
-                <span>Bio:</span> {bio}
-              </p>
-            )}
-          </div>
-          <div
-            style={{
-              width: "200px",
-              borderBottom: "1px solid #eee",
-              padding: "10px 0",
-            }}
-          >
-            <p>
-              <span>Repos:</span> {public_repos}
+          )}
+          {email !== null && (
+            <p style={{ fontSize: "12px", padding: "5px 0" }}>
+              <FiMail /> {email}
             </p>
-            <p>
-              <span>Following:</span> {following}
+          )}
+          {blog !== null && (
+            <p style={{ fontSize: "12px", padding: "5px 0" }}>
+              <FiLink />{" "}
+              <a href={blog} rel="noreferrer" target="_blank">
+                {blog}
+              </a>
             </p>
-            <p>
-              <span>Followers:</span> {followers}
+          )}
+          {twitter_username !== null && (
+            <p style={{ fontSize: "12px", padding: "5px 0" }}>
+              <FiTwitter />{" "}
+              <a
+                href={`https://twitter.com/${twitter_username}`}
+                rel="noreferrer"
+                target="_blank"
+              >
+                @{twitter_username}
+              </a>
             </p>
-          </div>
+          )}
         </div>
       </div>
     );
