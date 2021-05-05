@@ -1,16 +1,29 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: calc(100vh - 110px);
-  padding: 30px;
+  padding: 0 30px;
 }
 
 .user_info {
+  cursor: pointer;
+  position: relative;
+  top: -10px;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  width: 230px;
-  height: 100%;
+  width: 250px;
+  padding: 15px 10px 5px 10px;
+  border-radius: 3px;
+  box-shadow: 0 2px 17px #eee;
+  transition: box-shadow 0.2s linear;
+}
+
+.user_info:hover {
+  box-shadow: none;
 }
 
 .user_image {
