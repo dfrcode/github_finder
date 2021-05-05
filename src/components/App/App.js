@@ -103,8 +103,8 @@ class App extends Component {
               )}
             ></Route>
             <Route exact path="/about" component={About} />
-            <Route
-              path="/user/:login"
+            <Route exact
+              path="/users/:login"
               render={(props) => (
                 <UserItem
                   {...props}

@@ -14,7 +14,7 @@ const User = (props) => {
       <div className={styles.user}>
         <img src={avatar_url} alt={login} />
         <p>{login}</p>
-        <Link to={`/user/${login}`} rel="noreferrer nofollow" target="_blank">
+        <Link to={`/users/${login}`} rel="noreferrer nofollow" target="_blank">
           See
         </Link>
       </div>

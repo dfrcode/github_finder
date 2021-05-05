@@ -43,9 +43,11 @@ class UserItem extends Component {
               padding: "10px 0",
             }}
           >
-            <p>
-              <span>Bio:</span> {bio}
-            </p>
+            {bio !== null && (
+              <p>
+                <span>Bio:</span> {bio}
+              </p>
+            )}
           </div>
           <div
             style={{
