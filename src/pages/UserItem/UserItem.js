@@ -52,25 +52,25 @@ class UserItem extends Component {
             {Number.parseInt(following) > 1000
               ? `${(Number.parseInt(following) / 1000).toFixed(1)}k`
               : following}{" "}
-            following &bull; <GoRepo style={{ marginLeft: "3px" }} />{" "}
+            following &bull; <GoRepo style={{ margin: "0 3px" }} />{" "}
             {public_repos}
           </p>
-          {company !== null && (
+          {company !== "" && company !== null && (
             <p style={{ fontSize: "12px", padding: "5px 0" }}>
               <FaRegBuilding /> {company}
             </p>
           )}
-          {location !== null && (
+          {location !== "" && location !== null && (
             <p style={{ fontSize: "12px", padding: "5px 0" }}>
               <FiMapPin /> {location}
             </p>
           )}
-          {email !== null && (
+          {email !== "" && email !== null && (
             <p style={{ fontSize: "12px", padding: "5px 0" }}>
               <FiMail /> {email}
             </p>
           )}
-          {blog !== null && (
+          {blog !== "" && blog !== null && (
             <p style={{ fontSize: "12px", padding: "5px 0" }}>
               <FiLink />{" "}
               <a href={blog} rel="noreferrer" target="_blank">
@@ -78,7 +78,7 @@ class UserItem extends Component {
               </a>
             </p>
           )}
-          {twitter_username !== null && (
+          {twitter_username !== "" && twitter_username !== null && (
             <p style={{ fontSize: "12px", padding: "5px 0" }}>
               <FiTwitter />{" "}
               <a
