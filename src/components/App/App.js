@@ -10,6 +10,7 @@ import Alert from "../../layout/Alert/Alert";
 import Search from "../Search/Search";
 import Users from "../Users/Users";
 import About from "../../pages/About/About";
+import UserItem from "../../pages/UserItem/UserItem";
 import Footer from "../../layout/Footer/Footer";
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
 
     this.state = {
       users: [],
-      user: "",
+      user: {},
       loading: false,
       title: "GitHub Finder",
       icon: <BiGitBranch style={{ fontSize: "26px" }} />,
@@ -29,6 +30,7 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.setAlert = this.setAlert.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
   async componentDidMount() {
@@ -46,6 +48,14 @@ class App extends Component {
       `https://api.github.com/search/users?q=${value}&client_id=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_SECRET_ID}`
     );
     this.setState({ users: res.data.items, loading: false });
+  }
+
+  async getUser(user) {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${user}?client_id=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_FINDER_CLIENT_SECRET_ID}`
+    );
+    this.setState({ user: res.data, loading: false });
   }
 
   handleClear() {
@@ -93,6 +103,17 @@ class App extends Component {
               )}
             ></Route>
             <Route exact path="/about" component={About} />
+            <Route
+              path="/user/:login"
+              render={(props) => (
+                <UserItem
+                  {...props}
+                  getUser={this.getUser}
+                  user={this.state.user}
+                  loading={this.state.loading}
+                />
+              )}
+            />
           </div>
           <Footer date={this.state.date} />
         </div>
