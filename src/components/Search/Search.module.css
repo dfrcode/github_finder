@@ -20,7 +20,7 @@
     background-color: rgb(242, 252, 255);
 }
 
-.btn_search_user {
+.btn_search_user, .btn_clear_user {
   cursor: pointer;
   width: 100px;
   height: 40px;
@@ -36,4 +36,16 @@
 
 .btn_search_user:active {
   background-color: rgb(170, 135, 135);
+}
+
+.btn_clear_user {
+  background-color: #8d8d8d;
+}
+
+.btn_clear_user:hover {
+  background-color: #b37d7d;
+}
+
+.btn_clear_user:active {
+  background-color: #7da8b3;
 }
