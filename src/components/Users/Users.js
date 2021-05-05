@@ -28,7 +28,7 @@ const Users = (props) => {
         </div>
         <div className={styles.users_container}>
           {props.users.map((user) => (
-            <User key={user.id} user={user} />
+            <User key={user.id} user={user} loading={props.loading}/>
           ))}
         </div>
       </div>
