@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import styles from "./UserItem.module.css";
 
 import Spinner from "../../layout/Spinner/Spinner";
@@ -29,7 +30,11 @@ class UserItem extends Component {
     } = this.props.user;
 
     if (this.props.loading) {
-      return <div className={styles.container}><Spinner /></div>;
+      return (
+        <div className={styles.container}>
+          <Spinner />
+        </div>
+      );
     } else {
       return (
         <div className={styles.container}>
@@ -78,21 +83,21 @@ class UserItem extends Component {
             {blog !== "" && blog !== null && (
               <p style={{ fontSize: "12px", padding: "5px 0" }}>
                 <FiLink />{" "}
-                <a href={blog} rel="noreferrer" target="_blank">
+                <Link to={{pathname: blog}} rel="noreferrer" target="_blank">
                   {blog}
-                </a>
+                </Link>
               </p>
             )}
             {twitter_username !== "" && twitter_username !== null && (
               <p style={{ fontSize: "12px", padding: "5px 0" }}>
                 <FiTwitter />{" "}
-                <a
-                  href={`https://twitter.com/${twitter_username}`}
+                <Link
+                  to={{ pathname:`https://twitter.com/${twitter_username}`}}
                   rel="noreferrer"
                   target="_blank"
                 >
                   @{twitter_username}
-                </a>
+                </Link>
               </p>
             )}
           </div>
