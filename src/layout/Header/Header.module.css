@@ -19,3 +19,15 @@
   align-items: center;
   height: 100%;
 }
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+}
+
+.list_item {
+  padding: 10px;
+}

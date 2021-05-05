@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import styles from "./App.module.css";
 
@@ -8,6 +9,7 @@ import Header from "../../layout/Header/Header";
 import Alert from "../../layout/Alert/Alert";
 import Search from "../Search/Search";
 import Users from "../Users/Users";
+import About from "../../pages/About/About";
 import Footer from "../../layout/Footer/Footer";
 
 class App extends Component {
@@ -54,34 +56,47 @@ class App extends Component {
     this.setState({ alert: { msg, type } });
 
     setTimeout(() => {
-      this.setState({ alert: null })
+      this.setState({ alert: null });
     }, 3000);
   }
 
   render() {
     return (
-      <div className={styles.wrapper}>
-        <Header icon={this.state.icon} title={this.state.title} />
-        <div className={styles.container}>
-          <Alert alert={this.state.alert} />
-          <Search
-            handleText={this.handleText}
-            handleSearch={this.handleSearch}
-            checkUsers={this.state.users.length > 0 ? true : false}
-            setAlert={this.setAlert}
-          />
-          <div className={styles.container_users}>
-            <Users
-              users={this.state.users}
-              user={this.state.user}
-              loading={this.state.loading}
-              handleClear={this.handleClear}
-              checkUsers={this.state.users.length > 0 ? true : false}
-            />
+      <Router>
+        <div className={styles.wrapper}>
+          <Header icon={this.state.icon} title={this.state.title} />
+          <div className={styles.container}>
+            <Alert alert={this.state.alert} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Switch>
+                  <Fragment>
+                    <Search
+                      handleText={this.handleText}
+                      handleSearch={this.handleSearch}
+                      checkUsers={this.state.users.length > 0 ? true : false}
+                      setAlert={this.setAlert}
+                    />
+                    <div className={styles.container_users}>
+                      <Users
+                        users={this.state.users}
+                        user={this.state.user}
+                        loading={this.state.loading}
+                        handleClear={this.handleClear}
+                        checkUsers={this.state.users.length > 0 ? true : false}
+                      />
+                    </div>
+                  </Fragment>
+                </Switch>
+              )}
+            ></Route>
+            <Route exact path="/about" component={About} />
           </div>
+          <Footer date={this.state.date} />
         </div>
-        <Footer date={this.state.date} />
-      </div>
+      </Router>
     );
   }
 }
