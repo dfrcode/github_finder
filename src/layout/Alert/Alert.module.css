@@ -1,0 +1,21 @@
+.alert {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 60px 0 74px;
+}
+
+.alert_light {
+  background-color: #fff;
+}
+
+.alert_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background-color: #eee;
+}

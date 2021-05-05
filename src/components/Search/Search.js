@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { FiSearch } from "react-icons/fi";
 import styles from "./Search.module.css";
 
@@ -14,14 +15,23 @@ class Search extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  static propTypes = {
+    handleSearch: PropTypes.func.isRequired,
+    setAlert: PropTypes.func.isRequired,
+  }
+
   handleValue(e) {
     this.setState({ value: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleSearch(this.state.value);
-    this.setState({ value: "" });
+    if (this.state.value === "") {
+      this.props.setAlert("Please enter username", "alert_light");
+    } else {
+      this.props.handleSearch(this.state.value);
+      this.setState({ value: "" });
+    }
   }
 
   render() {

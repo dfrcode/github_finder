@@ -5,6 +5,7 @@ import styles from "./App.module.css";
 import { BiGitBranch } from "react-icons/bi";
 
 import Header from "../../layout/Header/Header";
+import Alert from "../../layout/Alert/Alert";
 import Search from "../Search/Search";
 import Users from "../Users/Users";
 import Footer from "../../layout/Footer/Footer";
@@ -20,10 +21,12 @@ class App extends Component {
       title: "GitHub Finder",
       icon: <BiGitBranch style={{ fontSize: "26px" }} />,
       date: new Date(),
+      alert: null,
     };
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.setAlert = this.setAlert.bind(this);
   }
 
   async componentDidMount() {
@@ -47,15 +50,25 @@ class App extends Component {
     this.setState({ users: [] });
   }
 
+  setAlert(msg, type) {
+    this.setState({ alert: { msg, type } });
+
+    setTimeout(() => {
+      this.setState({ alert: null })
+    }, 3000);
+  }
+
   render() {
     return (
       <div className={styles.wrapper}>
         <Header icon={this.state.icon} title={this.state.title} />
         <div className={styles.container}>
+          <Alert alert={this.state.alert} />
           <Search
             handleText={this.handleText}
             handleSearch={this.handleSearch}
             checkUsers={this.state.users.length > 0 ? true : false}
+            setAlert={this.setAlert}
           />
           <div className={styles.container_users}>
             <Users
