@@ -9,6 +9,7 @@ import Header from "../../layout/Header/Header";
 import Alert from "../../layout/Alert/Alert";
 import Search from "../Search/Search";
 import Users from "../Users/Users";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import About from "../../pages/About/About";
 import UserItem from "../../pages/UserItem/UserItem";
 import Footer from "../../layout/Footer/Footer";
@@ -103,7 +104,8 @@ class App extends Component {
               )}
             ></Route>
             <Route exact path="/about" component={About} />
-            <Route exact
+            <Route
+              exact
               path="/users/:login"
               render={(props) => (
                 <UserItem
@@ -114,6 +116,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route component={NotFoundPage} />
           </div>
           <Footer date={this.state.date} />
         </div>
