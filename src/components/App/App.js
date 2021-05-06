@@ -78,45 +78,49 @@ class App extends Component {
           <Header icon={this.state.icon} title={this.state.title} />
           <div className={styles.container}>
             <Alert alert={this.state.alert} />
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <Switch>
-                  <Fragment>
-                    <Search
-                      handleText={this.handleText}
-                      handleSearch={this.handleSearch}
-                      checkUsers={this.state.users.length > 0 ? true : false}
-                      setAlert={this.setAlert}
-                    />
-                    <div className={styles.container_users}>
-                      <Users
-                        users={this.state.users}
-                        user={this.state.user}
-                        loading={this.state.loading}
-                        handleClear={this.handleClear}
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => (
+                  <Switch>
+                    <Fragment>
+                      <Search
+                        handleText={this.handleText}
+                        handleSearch={this.handleSearch}
                         checkUsers={this.state.users.length > 0 ? true : false}
+                        setAlert={this.setAlert}
                       />
-                    </div>
-                  </Fragment>
-                </Switch>
-              )}
-            ></Route>
-            <Route exact path="/about" component={About} />
-            <Route
-              exact
-              path="/users/:login"
-              render={(props) => (
-                <UserItem
-                  {...props}
-                  getUser={this.getUser}
-                  user={this.state.user}
-                  loading={this.state.loading}
-                />
-              )}
-            />
-            <Route component={NotFoundPage} />
+                      <div className={styles.container_users}>
+                        <Users
+                          users={this.state.users}
+                          user={this.state.user}
+                          loading={this.state.loading}
+                          handleClear={this.handleClear}
+                          checkUsers={
+                            this.state.users.length > 0 ? true : false
+                          }
+                        />
+                      </div>
+                    </Fragment>
+                  </Switch>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/users/:login"
+                render={(props) => (
+                  <UserItem
+                    {...props}
+                    getUser={this.getUser}
+                    user={this.state.user}
+                    loading={this.state.loading}
+                  />
+                )}
+              />
+              <Route component={NotFoundPage} />
+            </Switch>
           </div>
           <Footer date={this.state.date} />
         </div>
