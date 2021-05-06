@@ -83,27 +83,23 @@ class App extends Component {
                 exact
                 path="/"
                 render={() => (
-                  <Switch>
-                    <Fragment>
-                      <Search
-                        handleText={this.handleText}
-                        handleSearch={this.handleSearch}
+                  <Fragment>
+                    <Search
+                      handleText={this.handleText}
+                      handleSearch={this.handleSearch}
+                      checkUsers={this.state.users.length > 0 ? true : false}
+                      setAlert={this.setAlert}
+                    />
+                    <div className={styles.container_users}>
+                      <Users
+                        users={this.state.users}
+                        user={this.state.user}
+                        loading={this.state.loading}
+                        handleClear={this.handleClear}
                         checkUsers={this.state.users.length > 0 ? true : false}
-                        setAlert={this.setAlert}
                       />
-                      <div className={styles.container_users}>
-                        <Users
-                          users={this.state.users}
-                          user={this.state.user}
-                          loading={this.state.loading}
-                          handleClear={this.handleClear}
-                          checkUsers={
-                            this.state.users.length > 0 ? true : false
-                          }
-                        />
-                      </div>
-                    </Fragment>
-                  </Switch>
+                    </div>
+                  </Fragment>
                 )}
               />
               <Route exact path="/about" component={About} />
