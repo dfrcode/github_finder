@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import styles from "./About.module.css";
 
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
@@ -15,16 +16,16 @@ const About = ({ img_url, github_url, linkedin_url }) => {
             <img src={img_url} alt="author" />
             <p>Denis Frolov</p>
             <ul className={styles.list}>
-              <a href={github_url} target="_blank" rel="noreferrer">
+              <Link to={{pathname: github_url}} target="_blank" rel="noreferrer">
                 <li className={styles.list_item}>
                   <FaGithubSquare />
                 </li>
-              </a>
-              <a href={linkedin_url} target="_blank" rel="noreferrer">
+              </Link>
+              <Link to={{pathname: linkedin_url}} target="_blank" rel="noreferrer">
                 <li className={styles.list_item}>
                   <FaLinkedin />
                 </li>
-              </a>
+              </Link>
             </ul>
           </div>
         </div>
