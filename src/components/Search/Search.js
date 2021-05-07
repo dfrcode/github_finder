@@ -1,58 +1,43 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FiSearch } from "react-icons/fi";
 import styles from "./Search.module.css";
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
+const Search = ({ setAlert, handleSearch }) => {
+  const [value, setValue] = useState("");
 
-    this.state = {
-      value: "",
-    };
+  const handleValue = (e) => {
+    setValue(e.target.value);
+  };
 
-    this.handleValue = this.handleValue.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  static propTypes = {
-    handleSearch: PropTypes.func.isRequired,
-    setAlert: PropTypes.func.isRequired,
-  }
-
-  handleValue(e) {
-    this.setState({ value: e.target.value });
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.value === "") {
-      this.props.setAlert("Please enter username", "alert_light");
+    if (value === "") {
+      setAlert("Please enter username", "alert_light");
     } else {
-      this.props.handleSearch(this.state.value);
-      this.setState({ value: "" });
+      handleSearch(value);
+      setValue("");
     }
-  }
+  };
 
-  render() {
-    return (
-      <form className={styles.form_search} onSubmit={this.handleSubmit}>
-        <FiSearch style={{ position: "relative", left: "30px" }} />
-        <input
-          className={styles.input_search_user}
-          type="text"
-          placeholder="Enter user..."
-          value={this.state.value}
-          onChange={this.handleValue}
-        />
-        <input
-          className={styles.btn_search_user}
-          type="submit"
-          value="Search"
-        />
-      </form>
-    );
-  }
-}
+  return (
+    <form className={styles.form_search} onSubmit={handleSubmit}>
+      <FiSearch style={{ position: "relative", left: "30px" }} />
+      <input
+        className={styles.input_search_user}
+        type="text"
+        placeholder="Enter user..."
+        value={value}
+        onChange={handleValue}
+      />
+      <input className={styles.btn_search_user} type="submit" value="Search" />
+    </form>
+  );
+};
+
+Search.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+};
 
 export default Search;
