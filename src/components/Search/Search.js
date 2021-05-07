@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FiSearch } from "react-icons/fi";
 import styles from "./Search.module.css";
 
-const Search = ({ setAlert, handleSearch }) => {
+const Search = ({ setAlertFunc, handleSearch }) => {
   const [value, setValue] = useState("");
 
   const handleValue = (e) => {
@@ -13,7 +13,7 @@ const Search = ({ setAlert, handleSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (value === "") {
-      setAlert("Please enter username", "alert_light");
+      setAlertFunc("Please enter username", "alert_light");
     } else {
       handleSearch(value);
       setValue("");
@@ -37,7 +37,7 @@ const Search = ({ setAlert, handleSearch }) => {
 
 Search.propTypes = {
   handleSearch: PropTypes.func.isRequired,
-  setAlert: PropTypes.func.isRequired,
+  setAlertFunc: PropTypes.func.isRequired,
 };
 
 export default Search;

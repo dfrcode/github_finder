@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./Header.module.css";
 
-const Header = (props) => {
+import { BiGitBranch } from "react-icons/bi";
+
+const Header = ({ icon, title }) => {
   return (
     <header className={styles.header}>
       <Link to="/">
         <div className={styles.header_logo}>
-          {props.icon} {props.title}
+          {icon} {title}
         </div>
       </Link>
       <ul className={styles.list}>
@@ -22,6 +24,11 @@ const Header = (props) => {
     </header>
   );
 };
+
+Header.defaultProps = {
+  title: "Github Finder",
+  icon: <BiGitBranch style={{ fontSize: "26px" }} />,
+}
 
 Header.propTypes = {
   icon: PropTypes.object.isRequired,
